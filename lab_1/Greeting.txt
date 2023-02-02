@@ -1,0 +1,23 @@
+
+            Rock Paper Scissors Lizard Spock
+
+Welcome to the game!
+Game was made by Oleh Kovalets,
+student of KNU University IPZ-22 group
+
+Rules:
+You should choose one thing of the following:
+rock, paper, scissors, lizard or spock.
+
+        Scissors cuts Paper
+        Paper covers Rock
+        Rock crushes Lizard
+        Lizard poisons Spock
+        Spock smashes Scissors
+        Scissors decapitates Lizard
+        Lizard eats Paper
+        Paper disproves Spock
+        Spock vaporizes Rock
+        Rock crushes Scissors
+
+==============================================================================
