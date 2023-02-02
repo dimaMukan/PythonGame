@@ -61,3 +61,37 @@ def game_core(bot_item, user_item):
             print("WIN!")
         elif bot_item == 4:
             print("LOSE!")
+
+
+def game():
+    bot_item = random.randint(1, 5)
+
+    user_item = 0
+    while user_item > 5 or user_item <= 0:
+        user_item = int(
+            input("\n\tChoose the item: \n\t\t1. Rock " + rock + "\n\t\t2. Paper " + paper + "\n\t\t3. Scissors " +
+                  scissors + "\n\t\t4. Lizard " + lizard + "\n\t\t5. Spock " + spock + "\n\tYour item: "))
+
+    print("\nYou chose " + items[user_item])
+    input()
+    print("Computer chose " + items[bot_item] + "\n")
+    time.sleep(0.5)
+    game_core(bot_item, user_item)
+
+    print("==============================================================================")
+    if str(input("Do you want to start a new game? (y) ")) == "y":
+        game()
+    else:
+        print("Awesome game! See you...")
+        exit(0)
+
+
+greeting = open("Greeting.txt").read()
+print(greeting)
+
+start = str(input("Do you want to start the game? (y) "))
+
+if start == "y":
+    game()
+else:
+    print("\nOK, see you next time...Bye!")
