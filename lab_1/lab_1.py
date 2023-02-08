@@ -11,8 +11,11 @@ spock = emoji.emojize(":vulcan_salute:")
 items = {1: "rock", 2: "paper", 3: "scissors", 4: "lizard", 5: "spock"}
 emoji_items = {1: rock, 2: paper, 3: scissors, 4: lizard, 5: spock}
 
+
 def win():
     print("YOU WIN!")
+
+
 def lose():
     print(f"YOU LOSE!")
 
@@ -43,23 +46,15 @@ def game_core(bot_item, user_item):
             lose()
 
     if user_item == 4:
-        if bot_item == 1:
-            lose()
-        elif bot_item == 2:
+        if bot_item == 2 or 5:
             win()
-        elif bot_item == 3:
+        else:
             lose()
-        elif bot_item == 5:
-            win()
 
     if user_item == 5:
-        if bot_item == 1:
+        if bot_item == 1 or 3:
             win()
-        elif bot_item == 2:
-            lose()
-        elif bot_item == 3:
-            win()
-        elif bot_item == 4:
+        else:
             lose()
 
 
