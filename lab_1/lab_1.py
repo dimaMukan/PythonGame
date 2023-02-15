@@ -15,7 +15,6 @@ emoji_items = {1: rock, 2: paper, 3: scissors, 4: lizard, 5: spock}
 def win():
      return "YOU WIN!"
 
-
 def lose():
      return "YOU LOSE!"
 
