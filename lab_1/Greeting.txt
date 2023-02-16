@@ -2,8 +2,8 @@
             Rock Paper Scissors Lizard Spock
 
 Welcome to the game!
-Game was made by Oleh Kovalets,
-student of KNU University IPZ-22 group
+Game was made by Oleh Kovalets and Dima Mukan,
+students of KNU University IPZ-22 group
 
 Rules:
 You should choose one thing of the following:
