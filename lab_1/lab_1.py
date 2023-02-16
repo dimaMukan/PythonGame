@@ -36,13 +36,50 @@ i = 0
 
 
 def is_win(user_item,bot_item):
+    """
+    Analyze bot item and user item. Define the winner.
+
+    This function compare two items: which has been chosen by CPU
+    and which was chosen by user. Thus, the winner is defined.
+
+    Parameters
+    ----------------
+    user_item : int
+        The item, chosen by user.
+    bot_item : int
+        The item, chosen by CPU.
+
+    Returns
+    ----------------
+    bool
+        True or false, depending on the results of comparing the items.
+    """
     if (user_item == 1 and bot_item in (3, 4)) or (user_item == 2 and bot_item in (1, 5)) or \
             (user_item == 3 and bot_item in (2, 4)) or (user_item == 4 and bot_item in (2, 5)) \
             or (user_item == 5 and bot_item in (1, 3)):
         return True
     return False
 
+
 def win_mes(user_item,bot_item,mode="CPU"):
+    """
+    Print result message depending on a mode of game.
+
+    This function print a message, which contains results of the game, to console.
+
+    Parameters
+    ----------------
+    user_item : int
+        The item, chosen by user.
+    bot_item : int
+        The item, chosen by CPU.
+    mode : string
+        Type of game (with computer or with another player)
+    Returns
+    ----------------
+    string
+        String message - results of the game.
+    """
     if mode == "CPU":
         if is_win(user_item,bot_item):
             return "You WIN!"
@@ -56,9 +93,17 @@ def win_mes(user_item,bot_item,mode="CPU"):
 
 
 def lose():
-     return "YOU LOSE!"
+    """
+    Return lose message.
+    """
+    return "YOU LOSE!"
+
 
 def choise():
+    """
+    A process-function, which gets from user mode of the game
+    (vs CPU or vs user).
+    """
     global i
     if i == 0:
         print("1 - vs CPU\n2 - vs Player")
@@ -67,7 +112,21 @@ def choise():
             print(f"Wrong, try again:")
             i = int(input())
 
+
 def bot(user_item,bot_item):
+    """
+    Notifies the user about the progress of the game.
+
+    This function notifies the user about the progress of the game
+    (what was chosen by user, what was chosen by CPU, who wins etc.).
+
+    Parameters
+    ----------------
+    user_item : int
+        The item, chosen by user.
+    bot_item : int
+        The item, chosen by CPU.
+    """
     print("\nYou chose " + items[user_item])
     time.sleep(1)
 
@@ -75,7 +134,22 @@ def bot(user_item,bot_item):
     time.sleep(0.5)
     game_core(bot_item, user_item)
 
+
 def player(user_item,bot_item):
+    """
+    Notifies the user about the progress of the game.
+
+    This function notifies the user about the progress of the game
+    (what was chosen by first user, what was chosen by second user,
+     who wins etc.).
+
+    Parameters
+    ----------------
+    user_item : int
+        The item, chosen by first player.
+    bot_item : int
+        The item, chosen by second player.
+    """
     print("\nPlayer 1 " + items[user_item])
     time.sleep(0.5)
 
@@ -83,7 +157,21 @@ def player(user_item,bot_item):
     time.sleep(0.5)
     game_core(bot_item, user_item)
 
+
 def game_core(bot_item, user_item):
+    """
+    Core function that displays game process, who win etc.
+
+    This function shows the user the progress of the game,
+    notify who won, or maybe it is a tie.
+
+    Parameters
+    ----------------
+    user_item : int
+        The item, chosen by first player.
+    bot_item : int
+        The item, chosen by second player.
+    """
     print(emoji_items[user_item] + "\t" + emoji.emojize(":right_arrow:") + "\t" + emoji_items[bot_item])
 
     if user_item == bot_item:
@@ -97,6 +185,12 @@ def game_core(bot_item, user_item):
 
 
 def game():
+    """
+    Main function that processes whole the game.
+
+    This function processes user inputs
+    (game mode, new game, game process).
+    """
     choise()
 
     res = '\n'.join(map(lambda item: f'\t{item[0]}. {item[1].title()} {emoji_items[item[0]]}', items.items()))
@@ -122,6 +216,7 @@ def game():
     else:
         print("Awesome game! See you...")
         exit(0)
+
 
 if __name__ == "__main__":
     try:
