@@ -3,25 +3,23 @@ import time
 import emoji
 import argparse
 
-# parser = argparse.ArgumentParser()
-# parser.add_argument("a",type=int,help="First arg")
-# parser.add_argument("b",type=int,help="Second arg")
-# parser.add_argument("-a","--action",help="What to do with numbers",default="sum")
-# args = parser.parse_args()
-# print(args)
-#
-# def sum(a,b):
-#     print(a+b)
-#
-# def min(a,b):
-#     print(a-b)
+parser = argparse.ArgumentParser()
+parser.add_argument("-a","--action",help="What to do with numbers",default="easy")
+args = parser.parse_args()
 
-# if args.action == "sum":
-#     sum(args.a,args.b)
-# elif args.action == "min":
-#     min(args.a,args.b)
-# else:
-#     print("Nothing")
+
+def easy(a,b):
+    print(a+b)
+
+def hard(a,b):
+    print(a-b)
+
+if args.action == "easy":
+    pass
+elif args.action == "hard":
+    pass
+else:
+    print("Nothing")
 
 
 rock = emoji.emojize(":rock:")
@@ -183,6 +181,21 @@ def game_core(bot_item, user_item):
     else:
         print(win_mes(user_item, bot_item))
 
+def selection(res:str,number:int):
+    user_item = 0
+    while user_item > number or user_item <= 0:
+        user_item = int(input(res + "\n\tYour item: "))
+
+    if i == 2:
+        a = "\n" * 15
+        print(f"{a}" + "Do not scroll up :)\n")
+        bot_item = 0
+        while bot_item > number or bot_item <= 0:
+            bot_item = int(input(res + "\n\tYour item: "))
+        player(user_item, bot_item)
+    else:
+        bot_item = random.randint(1, number)
+        bot(user_item, bot_item)
 
 def game():
     """
@@ -193,22 +206,17 @@ def game():
     """
     choise()
 
-    res = '\n'.join(map(lambda item: f'\t{item[0]}. {item[1].title()} {emoji_items[item[0]]}', items.items()))
+    res = ""
+    number = 0
+    if args.action == "easy":
+        number = 3
+        for a in range(3):
+           print(f'\t{a+1} - {items[a+1]}. {items[a+1].title()} {emoji_items[a+1]}')
 
-    user_item = 0
-    while user_item > len(items.keys()) or user_item <= 0:
-        user_item = int(input(res + "\n\tYour item: "))
-
-    if i == 2:
-        a = "\n"*15
-        print(f"{a}" + "Do not scroll up :)\n")
-        bot_item = 0
-        while bot_item > len(items.keys()) or bot_item <= 0:
-            bot_item = int(input(res + "\n\tYour item: "))
-        player(user_item,bot_item)
-    else:
-        bot_item = random.randint(1, len(items.keys()))
-        bot(user_item,bot_item)
+    elif args.action == "hard":
+        number = 5
+        res = '\n'.join(map(lambda item: f'\t{item[0]}. {item[1].title()} {emoji_items[item[0]]}', items.items()))
+    selection(res,number)
 
     print("==============================================================================")
     if input("Do you want to start a new game? (y) ").lower() == "y":
